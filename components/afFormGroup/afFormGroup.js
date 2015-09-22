@@ -12,7 +12,7 @@ Template.afFormGroup_materialize.helpers({
             'toggle',
             'switch'
         ];
-        type = AutoForm.getInputType(this);
+        type = AutoForm.getInputType(this.afFieldInputAtts);
         result = !_.contains(skipInputType, type);
         return result;
     },
@@ -29,7 +29,7 @@ Template.afFormGroup_materialize.helpers({
             'toggle',
             'switch'
         ];
-        type = AutoForm.getInputType(this);
+        type = AutoForm.getInputType(this.afFieldInputAtts);
         result = this.skipLabel || _.contains(skipLabelTypes, type);
         return result;
     }
@@ -42,7 +42,7 @@ Template.afFormGroup_materialize.rendered = function() {
         return function() {
             var value = AutoForm.getFieldValue(_this.data.name, formId);
             var inputValue = AutoForm.getInputValue(_this.find('input'));
-            var type = AutoForm.getInputType(_this.data);
+            var type = AutoForm.getInputType(_this.data.afFieldInputAtts);
             var placeholder = _this.data.afFieldInputAtts.placeholder;
             var skipActiveLabelTypes = [
                 'select',
