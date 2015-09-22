@@ -21,17 +21,17 @@ Template.afFormGroup_materialize.skipLabelTypes = [
     'switch'
 ];
 Template.afFormGroup_materialize.helpers({
-    addInputField: function () {
+    addInputField: function() {
         var result, skipInputType, type;
-        skipInputType = Template.afFormGroup_materialize.skipInputType;
-        type = AutoForm.getInputType(this);
+        skipInputType = Template.afFormGroup_materialize.skipInputType;        
+        type = AutoForm.getInputType(this.afFieldInputAtts);
         result = !_.contains(skipInputType, type);
         return result;
     },
-    skipLabel: function () {
+    skipLabel: function() {
         var result, skipLabelTypes, type;
-        skipLabelTypes = Template.afFormGroup_materialize.skipLabelTypes;
-        type = AutoForm.getInputType(this);
+        skipLabelTypes = Template.afFormGroup_materialize.skipLabelTypes;        
+        type = AutoForm.getInputType(this.afFieldInputAtts);
         result = this.skipLabel || _.contains(skipLabelTypes, type);
         return result;
     }
@@ -52,11 +52,11 @@ Template.afFormGroup_materialize.skipActiveLabelTypes = [
 Template.afFormGroup_materialize.rendered = function () {
     var formId;
     formId = AutoForm.getFormId();
-    this.autorun((function (_this) {
-        return function () {
+    this.autorun((function(_this) {
+        return function() {
             var value = AutoForm.getFieldValue(_this.data.name, formId);
             var inputValue = AutoForm.getInputValue(_this.find('input'));
-            var type = AutoForm.getInputType(_this.data);
+            var type = AutoForm.getInputType(_this.data.afFieldInputAtts);
             var placeholder = _this.data.afFieldInputAtts.placeholder;
             var skipActiveLabelTypes = Template.afFormGroup_materialize.skipActiveLabelTypes;
 
